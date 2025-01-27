@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .message {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .message h3 {
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .message .success {
+            color: green;
+            background-color: #e8f7e1;
+        }
+
+        .message .error {
+            color: red;
+            background-color: #f8d7da;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            width: 48%;
+            padding: 10px;
+            margin: 10px 1%;
+            border-radius: 4px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Login Page..!!</h2>
+
+        <div class="message" th:if="${success}">
+            <h3 class="success" th:text="${success}"></h3>
+        </div>
+
+        <div class="message" th:if="${error}">
+            <h3 class="error" th:text="${error}"></h3>
+        </div>
+
+        <form th:action="@{/loginform}" th:object="${user}" method="post">
+            <label for="username">UserName:-</label>
+            <input type="text" th:field="*{username}" required><br><br>
+
+            <label for="password">Password:-</label>
+            <input type="password" th:field="*{password}" required><br><br>
+
+            <input type="submit" value="Submit">
+            <input type="reset" value="Cancel">
+        </form>
+    </div>
+</body>
+
+</html>
